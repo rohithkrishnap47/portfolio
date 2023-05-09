@@ -1,0 +1,32 @@
+<form class="row " action="https://formspree.io/f/mayzvrdd" method="post" name="form1" id="form1">
+    <small id="name"></small>
+    <input class="mb-3" onchange="" type="text" id="name" name="name" placeholder="Name" required><br>
+    <small id="invalid"></small>
+    <input class="mb-3" onchange="" type="email" id="email" name="email" placeholder="Email" required><br>
+    <input class="mb-3" type="text" name="subject" id="subject" placeholder="Subject">
+    <textarea class="mb-3" onchange="sub()" type="text" name="message" id="message" placeholder="Message"></textarea><br>
+    <small id="asas"></small>
+    <input type="button" value="Send Message" onclick="validatename(document.form1.name)" class="button button-a button-big button-rouded">
+  </form>
+  function validatename(inputText) {
+    var x = document.form1.name.value;
+    var y = /^[A-Za-z\s]+$/.test(x);
+    if (y == false) {
+      document.getElementById("name").innerHTML = "name must only contain alphabets";
+      return false;
+    }
+    else {
+      document.getElementById("name").innerHTML = "";
+      var mail= document.form1.email.value;
+      var mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if (mail.match(mailFormat)) {
+        document.getElementById("invalid").innerHTML = "";
+        document.getElementById("form1").submit();
+        return true;
+      } 
+      else {
+        document.getElementById("invalid").innerHTML = "invalid email";
+        return false;
+      }
+    }
+  }
